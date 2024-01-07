@@ -6,7 +6,9 @@ import streamlit as st
 
 from util.plot_for_arima_timeseries import plot
 
-def process_statsmodels(df: pd.DataFrame):
+def process_statsmodels(df_arg: pd.DataFrame):
+    df = df_arg.copy()
+
     # step 1
     df_log = np.log(df)
     plot(df_log, 'Close', 'IBOVESPA (log)')
