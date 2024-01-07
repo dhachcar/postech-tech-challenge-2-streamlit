@@ -27,12 +27,12 @@ with st.container():
     st.plotly_chart(fig)
 
 tab0, tab1, tab2, tab3, tab4 = st.tabs(
-    tabs=['statsmodels', 'StatsForecast', 'Meta Prophet', 'Keras LSTM', 'Realtime'])
+    tabs=[':one: statsmodels', ':two: StatsForecast', ':three: Meta Prophet', ':four: Keras LSTM', ':five: Realtime'])
 
 TabStatsModels(tab0, df_bvsp)
-TabStatsForecast(tab1)
-TabProphet(tab2)
-TabKeras(tab3)
+TabStatsForecast(tab1, df_bvsp)
+TabProphet(tab2, df_bvsp)
+TabKeras(tab3, df_bvsp)
 
 
 

@@ -11,4 +11,8 @@ class TabStatsModels(TabInterface):
     
     def process_tab(self):
         st.write('## statsmodels')
-        process_statsmodels(self.df)  
+
+        with st.spinner('Processando...'):
+            process_statsmodels(self.df)
+            
+        st.success('Processamento concluído', icon='✅')

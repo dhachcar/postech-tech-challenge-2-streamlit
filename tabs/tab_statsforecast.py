@@ -12,4 +12,8 @@ class TabStatsForecast(TabInterface):
     def process_tab(self):
         st.write('## StatsForecast')
 
-        process_statsforecast(self.df)
+        with st.spinner('Processando...'):
+            process_statsforecast(self.df)
+            
+        st.success('Processamento concluído', icon='✅')
+        
