@@ -1,5 +1,6 @@
 import streamlit as st
 from tabs.tab import TabInterface
+from util.process_lstm import process_lstm
 
 class TabKeras(TabInterface):
     def __init__(self, tab, df):
@@ -12,6 +13,6 @@ class TabKeras(TabInterface):
         st.write('## Keras LSTM')
 
         with st.spinner('Processando...'):
-            x = 1 # process_prophet(self.df)
+            process_lstm(self.df)
 
         st.success('Processamento concluído', icon='✅')

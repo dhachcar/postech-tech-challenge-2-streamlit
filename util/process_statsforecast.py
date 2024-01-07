@@ -8,7 +8,9 @@ import global_config
 
 from util.plot_for_arima_timeseries import plot
 
-def process_statsforecast(df: pd.DataFrame):
+def process_statsforecast(df_arg: pd.DataFrame):
+    df = df_arg.copy()
+
     # chaveador para processar no app ou carregar as previsões do colabs
     if not global_config.use_colabs_statsforecast_export:
         df.reset_index(inplace=True)

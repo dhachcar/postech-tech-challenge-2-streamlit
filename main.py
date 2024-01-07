@@ -21,10 +21,17 @@ df_bvsp = yf.download('^BVSP', start=min_date, end=max_date)
 df_bvsp = pd.DataFrame(df_bvsp, columns=['Close'])
 
 with st.container():
-    fig = go.Figure()
-    fig.add_trace(go.Scatter(x=df_bvsp.index, y=df_bvsp['Close'], name='Close'))
-    fig.update_layout(title='IBOVESPA')
-    st.plotly_chart(fig)
+    col0, col1 = st.columns([1, 1])
+
+    with col0:
+        st.subheader('Últimos 10 fechamentos')
+        st.dataframe(df_bvsp.tail(10))
+
+    with col1:
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(x=df_bvsp.index, y=df_bvsp['Close'], name='Close'))
+        fig.update_layout(title='IBOVESPA')
+        st.plotly_chart(fig)
 
 tab0, tab1, tab2, tab3, tab4 = st.tabs(
     tabs=[':one: statsmodels', ':two: StatsForecast', ':three: Meta Prophet', ':four: Keras LSTM', ':five: Realtime'])

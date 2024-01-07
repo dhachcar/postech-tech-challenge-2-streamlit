@@ -5,7 +5,9 @@ from prophet.plot import plot_plotly
 from prophet.serialize import model_from_json
 import global_config
 
-def process_prophet(df: pd.DataFrame):
+def process_prophet(df_arg: pd.DataFrame):
+    df = df_arg.copy()
+
     # chaveador para processar no app ou carregar as previsões do colabs
     if not global_config.use_colabs_prophet_export:
         df.reset_index(inplace=True)
