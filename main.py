@@ -3,17 +3,14 @@ import streamlit as st
 import yfinance as yf
 import datetime
 import plotly.graph_objs as go
-import requests
-import json
 from tabs.tab_keras import TabKeras
 from tabs.tab_prophet import TabProphet
 from tabs.tab_statsforecast import TabStatsForecast
 from tabs.tab_statsmodels import TabStatsModels
+import warnings
 
-# https://medium.com/codex/streamlit-fastapi-%EF%B8%8F-the-ingredients-you-need-for-your-next-data-science-recipe-ffbeb5f76a92
-# https://medium.com/@borandabak/predicting-stock-prices-with-lstm-a-fastapi-and-streamlit-web-application-1ad0559639b7
-
-# st.set_page_config(layout="wide")
+warnings.filterwarnings('ignore')
+st.set_page_config(layout="wide")
 
 min_date = datetime.date(2020, 1, 1)
 max_date = datetime.date(2023, 12, 31)
@@ -21,13 +18,13 @@ df_bvsp = yf.download('^BVSP', start=min_date, end=max_date)
 df_bvsp = pd.DataFrame(df_bvsp, columns=['Close'])
 
 with st.container():
-    col0, col1 = st.columns([1, 1])
+    _, col1, col2, _ = st.columns([2, 2, 4, 2])
 
-    with col0:
+    with col1:
         st.subheader('Últimos 10 fechamentos')
         st.dataframe(df_bvsp.tail(10))
 
-    with col1:
+    with col2:
         fig = go.Figure()
         fig.add_trace(go.Scatter(x=df_bvsp.index, y=df_bvsp['Close'], name='Close'))
         fig.update_layout(title='IBOVESPA')
@@ -41,7 +38,8 @@ TabStatsForecast(tab1, df_bvsp)
 TabProphet(tab2, df_bvsp)
 TabKeras(tab3, df_bvsp)
 
-
+# https://medium.com/codex/streamlit-fastapi-%EF%B8%8F-the-ingredients-you-need-for-your-next-data-science-recipe-ffbeb5f76a92
+# https://medium.com/@borandabak/predicting-stock-prices-with-lstm-a-fastapi-and-streamlit-web-application-1ad0559639b7
 
 
 
