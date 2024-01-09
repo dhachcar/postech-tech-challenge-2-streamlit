@@ -62,11 +62,16 @@ def process_statsforecast(df_arg: pd.DataFrame):
     plot_window_average = StatsForecast.plot(df_treino.tail(plot_last_days), df_forecast, models=['WindowAverage'], level=niveis_de_confiaca, engine='plotly')
     plot_seas_wa = StatsForecast.plot(df_treino.tail(plot_last_days), df_forecast, models=['SeasWA'], level=niveis_de_confiaca, engine='plotly')
 
-    st.plotly_chart(plot_naive)
-    st.plotly_chart(plot_seasonal_naive)
-    st.plotly_chart(plot_auto_arima)
-    st.plotly_chart(plot_window_average)
-    st.plotly_chart(plot_seas_wa)
+    col0, col1 = st.columns([1, 1])
+
+    with col0:
+        st.plotly_chart(plot_naive)
+        st.plotly_chart(plot_seasonal_naive)
+        st.plotly_chart(plot_auto_arima)
+
+    with col1:
+        st.plotly_chart(plot_window_average)
+        st.plotly_chart(plot_seas_wa)
 
 def preenche_dias_faltantes(df: pd.DataFrame) -> pd.DataFrame :
     clone = df.copy()

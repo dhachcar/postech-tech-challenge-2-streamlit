@@ -5,6 +5,7 @@ import datetime
 import plotly.graph_objs as go
 from tabs.tab_keras import TabKeras
 from tabs.tab_prophet import TabProphet
+from tabs.tab_realtime import TabRealtime
 from tabs.tab_statsforecast import TabStatsForecast
 from tabs.tab_statsmodels import TabStatsModels
 import warnings
@@ -37,9 +38,8 @@ TabStatsModels(tab0, df_bvsp)
 TabStatsForecast(tab1, df_bvsp)
 TabProphet(tab2, df_bvsp)
 TabKeras(tab3, df_bvsp)
+TabRealtime(tab4, df_bvsp)
 
-# https://medium.com/codex/streamlit-fastapi-%EF%B8%8F-the-ingredients-you-need-for-your-next-data-science-recipe-ffbeb5f76a92
-# https://medium.com/@borandabak/predicting-stock-prices-with-lstm-a-fastapi-and-streamlit-web-application-1ad0559639b7
 
 
 
