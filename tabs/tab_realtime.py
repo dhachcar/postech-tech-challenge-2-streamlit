@@ -1,6 +1,7 @@
 import streamlit as st
 from tabs.tab import TabInterface
 from util.process_lstm import process_lstm
+from util.process_realtime import process_realtime
 
 class TabRealtime(TabInterface):
     def __init__(self, tab, df):
@@ -13,7 +14,6 @@ class TabRealtime(TabInterface):
         st.write('## Realtime')
 
         with st.spinner('Processando...'):
-            x = 1
-            # process_lstm(self.df)
+            process_realtime(self.df)
 
         st.success('Processamento concluído', icon='✅')

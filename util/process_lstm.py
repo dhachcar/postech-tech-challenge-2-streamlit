@@ -35,7 +35,7 @@ def process_lstm(df_arg: pd.DataFrame):
     frames = [df_past, df_future]
     results = pd.concat(frames, ignore_index=True)
 
-    results2023 =  results.loc['2023-01-01':]
+    results2023 = results.loc['2023-01-01':]
     results2023 = results2023.set_index('Date')
 
     fig = go.Figure()
