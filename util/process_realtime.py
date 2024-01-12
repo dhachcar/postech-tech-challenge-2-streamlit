@@ -22,13 +22,21 @@ def process_realtime(df_arg: pd.DataFrame):
             df = df_arg.copy()
             df.reset_index(inplace=True)
 
+            # recarrega o lstm e o scaler
             modelo = load_model('db/lstm')
             scaler = joblib.load('db/lstm_scaler/lstm_smooth_scaler.save') 
+
+            # "suaviza" os valores
+            alpha = 0.1
+            df['Close'] = df['Close'].ewm(alpha = alpha, adjust = False).mean()
+            close_values_transformed = scaler.transform(df['Close'].values.reshape((-1, 1)))
 
             close_values_transformed = scaler.transform(df['Close'].values.reshape((-1, 1)))
         
             st.info(f'Prevendo os próximos {days_between} dias (à partir de  {min.strftime("%d/%m/%Y")})', icon='📣')
+            st.warning('ATENÇÃO! Quanto maior o intervalo de tempo selecionado, maior a taxa de erro!', icon='⚠️')
 
+            # faz previsões
             num_prediction = days_between
             forecast = lstm_predict(num_prediction, close_values_transformed, modelo)
             forecast_dates = lstm_predict_dates(df['Date'], num_prediction)

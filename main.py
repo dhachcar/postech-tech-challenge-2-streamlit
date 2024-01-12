@@ -49,7 +49,7 @@ TabKeras(tab3, df_bvsp)
 TabRealtime(tab4, df_bvsp)
 
 with st.container():
-    _, col1, _ = st.columns([5, 3, 5])
+    _, col1, _ = st.columns([5, 4, 5])
 
     with col1:
         st.write(':blue[Danilo Henrique Achcar] :orange[RM 351516 - Turma 2DTAT]')
