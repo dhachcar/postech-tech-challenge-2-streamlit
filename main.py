@@ -19,6 +19,14 @@ df_bvsp = yf.download('^BVSP', start=min_date, end=max_date)
 df_bvsp = pd.DataFrame(df_bvsp, columns=['Close'])
 
 with st.container():
+    _, col1, _ = st.columns([2, 6, 2])
+
+    with col1:
+        st.header('Dashboard interativo')
+        st.text('Navegue pelas abas para verificar os resultados de cada abordagem utilizada durante o projeto.')
+        st.divider()
+
+with st.container():
     _, col1, col2, _ = st.columns([2, 2, 4, 2])
 
     with col1:
@@ -39,3 +47,9 @@ TabStatsForecast(tab1, df_bvsp)
 TabProphet(tab2, df_bvsp)
 TabKeras(tab3, df_bvsp)
 TabRealtime(tab4, df_bvsp)
+
+with st.container():
+    _, col1, _ = st.columns([5, 3, 5])
+
+    with col1:
+        st.write(':blue[Danilo Henrique Achcar] :orange[RM 351516 - Turma 2DTAT]')
